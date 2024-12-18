@@ -7,12 +7,12 @@ SRC_EXT := c
 BUILD_DIR := build
 SRC_FILES := $(shell find . -type f -name '*.$(SRC_EXT)')
 OBJ_FILES := $(patsubst %.c, $(BUILD_DIR)/%.o, $(SRC_FILES))
-TARGET := $(BUILD_DIR)/app
+TARGET := $(BUILD_DIR)/serenity
 
 FORMAT_CMD := clang-format -i
 TIDY_CMD := clang-tidy
 
-.PHONY: all format tidy build test clean debug
+.PHONY: all format tidy build-db build test clean debug
 
 # Default target
 all: format tidy build test
@@ -40,6 +40,10 @@ tidy:
 			$(TIDY_CMD) $$file; \
 		done; \
 	fi
+
+# Generate compilation database
+build-db:
+	bear -- make build
 
 # Build all .c files
 build: $(TARGET)
