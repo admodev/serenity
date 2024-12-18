@@ -1,0 +1,6 @@
+{
+  "sonarlint.pathToCompileCommands": "${workspaceFolder}/compile_commands.json",
+  "sonarlint.analyzerProperties": {
+    "sonar.cfamily.compile-commands": "${workspaceFolder}/compile_commands.json"
+  }
+}
